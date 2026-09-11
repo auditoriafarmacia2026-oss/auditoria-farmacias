@@ -7,13 +7,13 @@ desde cualquier lado sin duplicar codigo.
 import os
 import subprocess
 import sys
-from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright
 
-load_dotenv()
-USUARIO = os.getenv("LDCOM_USUARIO")
-PASSWORD = os.getenv("LDCOM_PASSWORD")
-URL = os.getenv("LDCOM_URL")
+from config import obtener
+
+USUARIO = obtener("LDCOM_USUARIO")
+PASSWORD = obtener("LDCOM_PASSWORD")
+URL = obtener("LDCOM_URL")
 
 CARPETA_DESCARGAS = os.path.join(os.path.expanduser("~"), "Downloads")
 os.makedirs(CARPETA_DESCARGAS, exist_ok=True)

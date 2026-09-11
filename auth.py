@@ -29,8 +29,9 @@ def _hash_password(password_texto_plano):
 
 
 def _cargar_usuarios():
-    """Lee la lista de usuarios permitidos desde la variable de entorno."""
-    crudo = os.getenv("AUDITORES_JSON", "{}")
+    """Lee la lista de usuarios permitidos (Secrets en la nube, o .env local)."""
+    from config import obtener
+    crudo = obtener("AUDITORES_JSON", "{}")
     try:
         return json.loads(crudo)
     except json.JSONDecodeError:
